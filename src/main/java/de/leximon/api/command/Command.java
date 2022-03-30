@@ -8,6 +8,6 @@ import org.bukkit.command.CommandSender;
 @FunctionalInterface
 public interface Command {
 
-    int run(CommandSender sender, CommandContext<CommandListenerWrapper> context) throws CommandSyntaxException;
+    int run(CommandSender sender, CommandContext<?> context) throws CommandSyntaxException;
 
 }
