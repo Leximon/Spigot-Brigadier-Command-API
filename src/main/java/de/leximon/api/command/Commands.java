@@ -61,74 +61,7 @@ public class Commands {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Commands list(SuggestionProvider<CommandListenerWrapper> provider) {
-		if (b instanceof RequiredArgumentBuilder) {
-			RequiredArgumentBuilder<CommandListenerWrapper, ?> rab = (RequiredArgumentBuilder<CommandListenerWrapper, ?>) b;
-			rab.suggests(provider);
-		} else {
-			throw new IllegalArgumentException("Unable to add a list to a literal argument");
-		}
-		return this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public Commands list(Object[] list, String argumentName) {
-		SuggestionProvider<CommandListenerWrapper> provider = (context, builder) -> {
-			for (Object c : list) {
-				try {
-					if (c.toString().toLowerCase().startsWith(StringArgumentType.getString(context, argumentName).toLowerCase()))
-						builder.suggest(c.toString());
-				} catch (IllegalArgumentException e) {
-					builder.suggest(c.toString());
-				}
-			}
-			return builder.buildFuture();
-		};
-		if (b instanceof RequiredArgumentBuilder) {
-			RequiredArgumentBuilder<CommandListenerWrapper, ?> rab = (RequiredArgumentBuilder<CommandListenerWrapper, ?>) b;
-			rab.suggests(provider);
-		} else {
-			throw new IllegalArgumentException("Unable to add a list to a literal argument");
-		}
-		return this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public Commands list(List<String> list, String argumentName) {
-		SuggestionProvider<CommandListenerWrapper> provider = (context, builder) -> {
-			for (String c : list) {
-				try {
-					if (c.toLowerCase().startsWith(StringArgumentType.getString(context, argumentName).toLowerCase()))
-						builder.suggest(c);
-				} catch (IllegalArgumentException e) {
-					builder.suggest(c);
-				}
-			}
-			return builder.buildFuture();
-		};
-		if (b instanceof RequiredArgumentBuilder) {
-			RequiredArgumentBuilder<CommandListenerWrapper, ?> rab = (RequiredArgumentBuilder<CommandListenerWrapper, ?>) b;
-			rab.suggests(provider);
-		} else {
-			throw new IllegalArgumentException("Unable to add a list to a literal argument");
-		}
-		return this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public <T> Commands list(Class<T> clazz, List<T> list, Function<T, String> convert, String argumentName) {
-		SuggestionProvider<CommandListenerWrapper> provider = (context, builder) -> {
-			for (T c : list) {
-				String cs = convert.apply(c);
-				try {
-					if (cs.toLowerCase().startsWith(StringArgumentType.getString(context, argumentName).toLowerCase()))
-						builder.suggest(cs);
-				} catch (IllegalArgumentException e) {
-					builder.suggest(cs);
-				}
-			}
-			return builder.buildFuture();
-		};
+	public Commands suggests(SuggestionProvider<CommandListenerWrapper> provider) {
 		if (b instanceof RequiredArgumentBuilder) {
 			RequiredArgumentBuilder<CommandListenerWrapper, ?> rab = (RequiredArgumentBuilder<CommandListenerWrapper, ?>) b;
 			rab.suggests(provider);
