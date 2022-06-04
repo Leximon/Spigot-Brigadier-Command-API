@@ -16,6 +16,7 @@ import net.minecraft.world.phys.Vec3D;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unchecked")
 public class Arguments {
 
     public static class Entity {
@@ -32,26 +33,26 @@ public class Arguments {
             return ArgumentEntity.d();
         }
 
-        public static org.bukkit.entity.Entity getEntity(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            return ArgumentEntity.a(context, name).getBukkitEntity();
+        public static org.bukkit.entity.Entity getEntity(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return ArgumentEntity.a((CommandContext<CommandListenerWrapper>) context, name).getBukkitEntity();
         }
-        public static Collection<org.bukkit.entity.Entity> getEntities(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            return ArgumentEntity.b(context, name).stream()
+        public static Collection<org.bukkit.entity.Entity> getEntities(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return ArgumentEntity.b((CommandContext<CommandListenerWrapper>) context, name).stream()
                     .map(net.minecraft.world.entity.Entity::getBukkitEntity)
                     .collect(Collectors.toList());
         }
-        public static Collection<org.bukkit.entity.Entity> getOptionalEntities(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            return ArgumentEntity.c(context, name).stream()
+        public static Collection<org.bukkit.entity.Entity> getOptionalEntities(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return ArgumentEntity.c((CommandContext<CommandListenerWrapper>) context, name).stream()
                     .map(net.minecraft.world.entity.Entity::getBukkitEntity)
                     .collect(Collectors.toList());
         }
-        public static Collection<org.bukkit.entity.Player> getPlayers(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            return ArgumentEntity.f(context, name).stream()
+        public static Collection<org.bukkit.entity.Player> getPlayers(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return ArgumentEntity.f((CommandContext<CommandListenerWrapper>) context, name).stream()
                     .map(EntityPlayer::getBukkitEntity)
                     .collect(Collectors.toList());
         }
-        public static Collection<org.bukkit.entity.Player> getOptionalPlayers(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            return ArgumentEntity.d(context, name).stream()
+        public static Collection<org.bukkit.entity.Player> getOptionalPlayers(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return ArgumentEntity.d((CommandContext<CommandListenerWrapper>) context, name).stream()
                     .map(EntityPlayer::getBukkitEntity)
                     .collect(Collectors.toList());
         }
@@ -62,9 +63,9 @@ public class Arguments {
             return ArgumentVec3.a();
         }
 
-        public static org.bukkit.Location getLocation(CommandContext<CommandListenerWrapper> context, String name) {
-            Vec3D vec = ArgumentVec3.a(context, name);
-            return new org.bukkit.Location(context.getSource().e().getWorld(), vec.b, vec.c, vec.d);
+        public static org.bukkit.Location getLocation(CommandContext<?> context, String name) {
+            Vec3D vec = ArgumentVec3.a((CommandContext<CommandListenerWrapper>) context, name);
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().e().getWorld(), vec.b, vec.c, vec.d);
         }
     }
 
@@ -73,14 +74,14 @@ public class Arguments {
             return ArgumentPosition.a();
         }
 
-        public static org.bukkit.Location getLoadedBlockLocation(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            BlockPosition pos = ArgumentPosition.a(context, name);
-            return new org.bukkit.Location(context.getSource().e().getWorld(), pos.u(), pos.v(), pos.w());
+        public static org.bukkit.Location getLoadedBlockLocation(CommandContext<?> context, String name) throws CommandSyntaxException {
+            BlockPosition pos = ArgumentPosition.a((CommandContext<CommandListenerWrapper>) context, name);
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().e().getWorld(), pos.u(), pos.v(), pos.w());
         }
 
-        public static org.bukkit.Location getBlockLocation(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            BlockPosition pos = ArgumentPosition.b(context, name);
-            return new org.bukkit.Location(context.getSource().e().getWorld(), pos.u(), pos.v(), pos.w());
+        public static org.bukkit.Location getBlockLocation(CommandContext<?> context, String name) throws CommandSyntaxException {
+            BlockPosition pos = ArgumentPosition.b((CommandContext<CommandListenerWrapper>) context, name);
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().e().getWorld(), pos.u(), pos.v(), pos.w());
         }
     }
 
@@ -89,8 +90,8 @@ public class Arguments {
             return ArgumentDimension.a();
         }
 
-        public static org.bukkit.World getWorld(CommandContext<CommandListenerWrapper> context, String name) throws CommandSyntaxException {
-            return ArgumentDimension.a(context, name).getWorld();
+        public static org.bukkit.World getWorld(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return ArgumentDimension.a((CommandContext<CommandListenerWrapper>) context, name).getWorld();
         }
     }
 
@@ -99,8 +100,8 @@ public class Arguments {
             return ArgumentRotation.a();
         }
 
-        public static float[] getRotation(CommandContext<CommandListenerWrapper> context, String name) {
-            Vec2F rot = ArgumentRotation.a(context, name).b(context.getSource());
+        public static float[] getRotation(CommandContext<?> context, String name) {
+            Vec2F rot = ArgumentRotation.a((CommandContext<CommandListenerWrapper>) context, name).b(((CommandContext<CommandListenerWrapper>) context).getSource());
             return new float[] {rot.i, rot.j};
         }
     }
