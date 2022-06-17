@@ -1,5 +1,6 @@
 package de.leximon.api.command;
 
+import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandListenerWrapper;
@@ -20,16 +21,16 @@ import java.util.stream.Collectors;
 public class Arguments {
 
     public static class Entity {
-        public static ArgumentEntity entity() {
+        public static ArgumentType<?> entity() {
             return ArgumentEntity.a();
         }
-        public static ArgumentEntity entities() {
+        public static ArgumentType<?> entities() {
             return ArgumentEntity.b();
         }
-        public static ArgumentEntity player() {
+        public static ArgumentType<?> player() {
             return ArgumentEntity.c();
         }
-        public static ArgumentEntity players() {
+        public static ArgumentType<?> players() {
             return ArgumentEntity.d();
         }
 
@@ -59,7 +60,7 @@ public class Arguments {
     }
 
     public static class Location {
-        public static ArgumentVec3 location() {
+        public static ArgumentType<?> location() {
             return ArgumentVec3.a();
         }
 
@@ -70,7 +71,7 @@ public class Arguments {
     }
 
     public static class BlockLocation {
-        public static ArgumentPosition blockLocation() {
+        public static ArgumentType<?> blockLocation() {
             return ArgumentPosition.a();
         }
 
@@ -86,7 +87,7 @@ public class Arguments {
     }
 
     public static class World {
-        public static ArgumentDimension world() {
+        public static ArgumentType<?> world() {
             return ArgumentDimension.a();
         }
 
@@ -96,7 +97,7 @@ public class Arguments {
     }
 
     public static class Rotation {
-        public static ArgumentRotation rotation() {
+        public static ArgumentType<?> rotation() {
             return ArgumentRotation.a();
         }
 
