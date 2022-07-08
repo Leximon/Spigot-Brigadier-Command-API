@@ -25,7 +25,7 @@ public class Arguments {
             return ArgumentEntity.a();
         }
         public static ArgumentType<?> entities() {
-            return ArgumentEntity.b();
+            return ArgumentEntity.multipleEntities();
         }
         public static ArgumentType<?> player() {
             return ArgumentEntity.c();
@@ -66,7 +66,7 @@ public class Arguments {
 
         public static org.bukkit.Location getLocation(CommandContext<?> context, String name) {
             Vec3D vec = ArgumentVec3.a((CommandContext<CommandListenerWrapper>) context, name);
-            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().e().getWorld(), vec.b, vec.c, vec.d);
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().getWorld().getWorld(), vec.b, vec.c, vec.d);
         }
     }
 
@@ -77,12 +77,12 @@ public class Arguments {
 
         public static org.bukkit.Location getLoadedBlockLocation(CommandContext<?> context, String name) throws CommandSyntaxException {
             BlockPosition pos = ArgumentPosition.a((CommandContext<CommandListenerWrapper>) context, name);
-            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().e().getWorld(), pos.u(), pos.v(), pos.w());
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().getWorld().getWorld(), pos.getX(), pos.getY(), pos.getZ());
         }
 
         public static org.bukkit.Location getBlockLocation(CommandContext<?> context, String name) throws CommandSyntaxException {
             BlockPosition pos = ArgumentPosition.b((CommandContext<CommandListenerWrapper>) context, name);
-            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().e().getWorld(), pos.u(), pos.v(), pos.w());
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().getWorld().getWorld(), pos.getX(), pos.getY(), pos.getZ());
         }
     }
 

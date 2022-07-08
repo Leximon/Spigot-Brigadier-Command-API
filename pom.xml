@@ -6,7 +6,7 @@
 
     <groupId>de.leximon</groupId>
     <artifactId>spigot-brigadier-command-api</artifactId>
-    <version>1.1.1-mc1.18.2</version>
+    <version>1.1.2-mc1.17.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.18.2-R0.1-SNAPSHOT</version>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -44,13 +44,13 @@
             <artifactId>spigot-nms</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/spigot-1.18.2-R0.1-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/spigot-1.17.1.jar</systemPath>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.mojang</groupId>
             <artifactId>brigadier</artifactId>
             <version>1.0.18</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
