@@ -28,7 +28,7 @@
     <distributionManagement>
         <repository>
             <id>tts-craft-releases</id>
-            <url>https://panel.tts-craft.de:25577/releases</url>
+            <url>http://panel.tts-craft.de:25577/releases</url>
         </repository>
     </distributionManagement>
 
