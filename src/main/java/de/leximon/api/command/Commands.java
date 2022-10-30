@@ -1,5 +1,6 @@
 package de.leximon.api.command;
 
+import com.mojang.brigadier.LiteralMessage;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
@@ -7,7 +8,6 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.commands.CommandDispatcher;
 import net.minecraft.commands.CommandListenerWrapper;
-import net.minecraft.network.chat.ChatComponentText;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class Commands {
 					if(entry.getValue() == null)
 						builder.suggest(entry.getKey());
 					else
-						builder.suggest(entry.getKey(), new ChatComponentText(entry.getValue()));
+						builder.suggest(entry.getKey(), new LiteralMessage(entry.getValue()));
 				}
 			}
 			return builder.buildFuture();
