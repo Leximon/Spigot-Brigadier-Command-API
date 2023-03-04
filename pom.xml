@@ -6,7 +6,7 @@
 
     <groupId>de.leximon</groupId>
     <artifactId>spigot-brigadier-command-api</artifactId>
-    <version>1.2.0-paper-mc1.19.3</version>
+    <version>1.2.2-paper-mc1.19.3</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

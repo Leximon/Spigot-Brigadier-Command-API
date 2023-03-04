@@ -61,7 +61,7 @@ public class Suggestions {
         }
 
         @CheckReturnValue
-        public SuggestionProvider<CommandListenerWrapper> build() {
+        public SuggestionProvider<?> build() {
             return (context, builder) -> {
                 String input = builder.getInput().substring(builder.getStart());
                 Stream<T> stream = streamSupplier.get()

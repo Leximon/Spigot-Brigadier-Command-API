@@ -59,10 +59,10 @@ public class Commands {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Commands suggests(SuggestionProvider<CommandListenerWrapper> provider) {
+	public Commands suggests(SuggestionProvider<?> provider) {
 		if (b instanceof RequiredArgumentBuilder) {
 			RequiredArgumentBuilder<CommandListenerWrapper, ?> rab = (RequiredArgumentBuilder<CommandListenerWrapper, ?>) b;
-			rab.suggests(provider);
+			rab.suggests((SuggestionProvider<CommandListenerWrapper>) provider);
 		} else {
 			throw new IllegalArgumentException("Unable to add a list to a literal argument");
 		}
@@ -115,7 +115,7 @@ public class Commands {
 		b.requires(cc -> hasPermission(cc.getBukkitSender()));
 	}
 
-	public static SuggestionProvider<CommandListenerWrapper> list(Consumer<Suggestions> list) {
+	public static SuggestionProvider<?> list(Consumer<Suggestions> list) {
 		return (context, builder) -> {
 			String input = builder.getInput().substring(builder.getStart());
 			Suggestions suggestions = new Suggestions(context);
@@ -134,9 +134,9 @@ public class Commands {
 
 	public static class Suggestions {
 		private final HashMap<String, String> texts = new HashMap<String, String>();
-		private final CommandContext<CommandListenerWrapper> context;
+		private final CommandContext<?> context;
 
-		public Suggestions(CommandContext<CommandListenerWrapper> context) {
+		public Suggestions(CommandContext<?> context) {
 			this.context = context;
 		}
 
@@ -148,12 +148,8 @@ public class Commands {
 			add(text, null);
 		}
 
-		public CommandContext<CommandListenerWrapper> getContext() {
+		public CommandContext<?> getContext() {
 			return context;
-		}
-
-		public CommandSender getSender() {
-			return context.getSource().getBukkitSender();
 		}
 	}
 }
