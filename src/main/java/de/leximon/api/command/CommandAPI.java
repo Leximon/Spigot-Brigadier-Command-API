@@ -52,22 +52,29 @@ public class CommandAPI {
 	}
 
 	public void register(BrigadierCommand command) {
+		String[] names = command.names;
+		String[] permissions = command.permissions;
+		CommandUser[] user = command.user;
+
 		for(Annotation annotation : command.getClass().getAnnotations()) {
-			if(annotation instanceof CommandInfo commandInfo) {
-				for(String name : commandInfo.names()) {
-					Commands c = Commands.literal(name);
-					
-					c.perm(commandInfo.permissions());
-					c.user(commandInfo.user());
-					c.updateRequirements();
-					
-					command.command(c);
-					commands.add(c);
-				}
-				return;
-			}
+			if(!(annotation instanceof CommandInfo commandInfo))
+				continue;
+			names = commandInfo.names();
+			permissions = commandInfo.permissions();
+			user = commandInfo.user();
+			break;
 		}
-		throw new AnnotationFormatError("CommandInfo annotation is missing!");
+
+		for (String name : names) {
+			Commands c = Commands.literal(name);
+
+			c.perm(permissions);
+			c.user(user);
+			c.updateRequirements();
+
+			command.command(c);
+			commands.add(c);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
