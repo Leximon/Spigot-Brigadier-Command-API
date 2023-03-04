@@ -3,7 +3,9 @@ package de.leximon.api.command;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import io.papermc.paper.adventure.PaperAdventure;
 import net.minecraft.commands.CommandListenerWrapper;
+import net.minecraft.commands.arguments.ArgumentChat;
 import net.minecraft.commands.arguments.ArgumentDimension;
 import net.minecraft.commands.arguments.ArgumentEntity;
 import net.minecraft.commands.arguments.coordinates.ArgumentPosition;
@@ -104,6 +106,16 @@ public class Arguments {
         public static float[] getRotation(CommandContext<?> context, String name) {
             Vec2F rot = ArgumentRotation.a((CommandContext<CommandListenerWrapper>) context, name).b(((CommandContext<CommandListenerWrapper>) context).getSource());
             return new float[] {rot.i, rot.j};
+        }
+    }
+
+    public static class Component {
+        public static ArgumentType<?> component() {
+            return ArgumentChat.a();
+        }
+
+        public static net.kyori.adventure.text.Component getComponent(CommandContext<?> context, String name) throws CommandSyntaxException {
+            return PaperAdventure.asAdventure(ArgumentChat.a((CommandContext<CommandListenerWrapper>) context, name));
         }
     }
 
