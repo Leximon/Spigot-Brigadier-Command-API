@@ -6,12 +6,14 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.adventure.PaperAdventure;
 import net.minecraft.commands.CommandListenerWrapper;
 import net.minecraft.commands.arguments.ArgumentChat;
+import net.minecraft.commands.arguments.ArgumentChatComponent;
 import net.minecraft.commands.arguments.ArgumentDimension;
 import net.minecraft.commands.arguments.ArgumentEntity;
 import net.minecraft.commands.arguments.coordinates.ArgumentPosition;
 import net.minecraft.commands.arguments.coordinates.ArgumentRotation;
 import net.minecraft.commands.arguments.coordinates.ArgumentVec3;
 import net.minecraft.core.BlockPosition;
+import net.minecraft.server.commands.CommandTellRaw;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.phys.Vec2F;
 import net.minecraft.world.phys.Vec3D;
@@ -111,11 +113,11 @@ public class Arguments {
 
     public static class Component {
         public static ArgumentType<?> component() {
-            return ArgumentChat.a();
+            return ArgumentChatComponent.a();
         }
 
-        public static net.kyori.adventure.text.Component getComponent(CommandContext<?> context, String name) throws CommandSyntaxException {
-            return PaperAdventure.asAdventure(ArgumentChat.a((CommandContext<CommandListenerWrapper>) context, name));
+        public static net.kyori.adventure.text.Component getComponent(CommandContext<?> context, String name) {
+            return PaperAdventure.asAdventure(ArgumentChatComponent.a((CommandContext<CommandListenerWrapper>) context, name));
         }
     }
 
