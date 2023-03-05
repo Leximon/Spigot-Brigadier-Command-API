@@ -1,7 +1,6 @@
 package de.leximon.api.command;
 
 import com.mojang.brigadier.suggestion.SuggestionProvider;
-import net.minecraft.commands.CommandListenerWrapper;
 
 import javax.annotation.CheckReturnValue;
 import java.util.Collection;
@@ -68,8 +67,14 @@ public class Suggestions {
                         .filter(v -> filter.test(v, input));
                 if (comparator != null)
                     stream = stream.sorted(comparator);
-                stream.map(v -> new Suggestion(valueProvider.apply(v), tooltipProvider != null ? tooltipProvider.apply(v) : null))
-                        .forEach(sug -> builder.suggest(sug.value, () -> sug.tooltip));
+                stream.forEach(v -> {
+                    String value = valueProvider.apply(v);
+                    String tooltip = tooltipProvider != null ? tooltipProvider.apply(v) : null;
+                    if (tooltip == null)
+                        builder.suggest(value);
+                    else
+                        builder.suggest(value, () -> tooltip);
+                });
                 return builder.buildFuture();
             };
         }
