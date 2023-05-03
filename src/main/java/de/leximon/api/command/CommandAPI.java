@@ -5,15 +5,14 @@ import com.mojang.brigadier.tree.CommandNode;
 import net.minecraft.commands.CommandDispatcher;
 import net.minecraft.commands.CommandListenerWrapper;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_19_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_19_R2.command.VanillaCommandWrapper;
-import org.bukkit.craftbukkit.v1_19_R2.util.permissions.CraftDefaultPermissions;
+import org.bukkit.craftbukkit.v1_19_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_19_R3.command.VanillaCommandWrapper;
+import org.bukkit.craftbukkit.v1_19_R3.util.permissions.CraftDefaultPermissions;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.permissions.DefaultPermissions;
 import org.spigotmc.SpigotConfig;
 
 import java.lang.annotation.Annotation;
-import java.lang.annotation.AnnotationFormatError;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

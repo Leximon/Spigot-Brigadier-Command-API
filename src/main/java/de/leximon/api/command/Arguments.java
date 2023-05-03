@@ -66,7 +66,7 @@ public class Arguments {
 
         public static org.bukkit.Location getLocation(CommandContext<?> context, String name) {
             Vec3D vec = ArgumentVec3.a((CommandContext<CommandListenerWrapper>) context, name);
-            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().f().s.getWorld(), vec.c, vec.d, vec.e);
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().f().H.getWorld(), vec.c, vec.d, vec.e);
         }
     }
 
@@ -77,12 +77,12 @@ public class Arguments {
 
         public static org.bukkit.Location getLoadedBlockLocation(CommandContext<?> context, String name) throws CommandSyntaxException {
             BlockPosition pos = ArgumentPosition.a((CommandContext<CommandListenerWrapper>) context, name);
-            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().f().s.getWorld(), pos.u(), pos.v(), pos.w());
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().f().H.getWorld(), pos.u(), pos.v(), pos.w());
         }
 
         public static org.bukkit.Location getBlockLocation(CommandContext<?> context, String name) throws CommandSyntaxException {
             BlockPosition pos = ArgumentPosition.b((CommandContext<CommandListenerWrapper>) context, name);
-            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().f().s.getWorld(), pos.u(), pos.v(), pos.w());
+            return new org.bukkit.Location(((CommandContext<CommandListenerWrapper>) context).getSource().f().H.getWorld(), pos.u(), pos.v(), pos.w());
         }
     }
 
